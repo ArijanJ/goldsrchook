@@ -1,9 +1,8 @@
+from util.logs import log_wrapper as log 
+import random
+
 from command_builder.command import Command
 from instructions.speech import say
-
-from util.logs import log_wrapper as log 
-from instructions.speech import say
-import random
 
 def generate(args):
     randcount = 1
