@@ -1,4 +1,3 @@
-import util.exec as exec
 from util.logs import log_wrapper as log
 
 from command_builder.command import Command
