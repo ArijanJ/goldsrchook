@@ -39,7 +39,7 @@ def list_plugins():
             disabled_funcs.append(func)
 
     if not disabled_funcs: 
-        command.run() # We're done
+        command.add(condebug(), toggleconsole()).run() # We're done
         return
 
     command.add(
