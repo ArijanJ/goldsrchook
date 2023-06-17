@@ -1,6 +1,6 @@
 ## Pseudo-IPC for GoldSrc-based games (mainly Counter-Strike 1.6)
 
-### Demo (screenshots): [in-game](https://github.com/ArijanJ/goldsrchook/assets/56356662/cd6aee2a-3648-4b91-83e5-9dae08c83444) [python](https://github.com/ArijanJ/goldsrchook/assets/56356662/c5127819-9d4b-4bca-a120-36564590ee35)
+### Demo (screenshots): [in-game](https://github.com/ArijanJ/goldsrchook/assets/56356662/8a3bd1d2-5a4e-4eaa-bb38-f5690659b3b7) [python](https://github.com/ArijanJ/goldsrchook/assets/56356662/8f98b596-ac05-4297-8184-09a50377355a)
 
 ## Quick start:
 
