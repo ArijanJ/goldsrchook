@@ -21,6 +21,7 @@ class Death:
     victim: str
     method: str
     time_string: str
+    headshot: bool
 
 def find_death(args) -> Death:
     match = args[0]
@@ -34,9 +35,8 @@ def find_death(args) -> Death:
 
     death_line = death_line.replace('***', '')
     death_line = death_line.strip()
-    #log(f'stripped line: {killerLine}')
 
-    # Get rid of timestamp from util.logs
+    # Get rid of timestamp from log
     splitLine = death_line.split()
     
     print(f'splitLine: {splitLine}')
@@ -51,6 +51,8 @@ def find_death(args) -> Death:
 
     # Method
     method = death_line.rsplit(' ', 1)[1]
+
+    headshot = 'with a headshot' in death_line
 
     log(f'Parsed {death_line}')
 
@@ -70,22 +72,29 @@ def find_death(args) -> Death:
         time_string = f'{str(seconds)} seconds ago'
     elif seconds/60 == 1:
         time_string = 'a minute ago'
-    elif seconds/60 >= 1:
+    elif seconds/60 > 1:
         time_string = f'{str(math.floor(seconds/60))} minutes ago'
 
-    return Death(killer, victim, method, time_string)
+    return Death(killer, victim, method, time_string, headshot)
+
+def format_death_string(death: Death) -> str:
+    output = f'{cc.blank}{cc.team}{death.killer} {cc.yellow}->{cc.team} {death.victim} {cc.yellow}({death.method}) '
+
+    if death.headshot:
+        output += f'{cc.green}[HS!] {cc.yellow}'
+
+    return output + f'- {cc.green}{death.time_string}{cc.yellow}'
 
 def amx_say_death(args):
     death = find_death(args)
 
     if not death:
         return
-    
-    print(death)
 
-    Command(
-        amx_say(f'{cc.blank}{cc.team}{death.killer} {cc.yellow}->{cc.team} {death.victim} {cc.yellow}({death.method}) - {cc.green}{death.time_string}{cc.yellow}')
-    ).run()
+    log(f'Found death: {death}')
+
+    Command(amx_say(format_death_string(death))).run()
+
 
 def slowsay_death(args):
     death = find_death(args)
@@ -93,20 +102,6 @@ def slowsay_death(args):
     if not death:
         return
     
-    print(death)
+    log(f'Found death: {death}')
 
-    # Headshot
-    # if 'with a headshot' in killer_line:
-    #     slowsay(f'{killer} -> {victim} ({method}) [HS!] - {timeString}', True)
-
-    # # Not a headshot
-    # else:
-    slowsay(f'{death.killer} -> {death.victim} ({death.method}) - {death.time_string}')
-
-    # # Headshot
-    # if 'with a headshot' in killerLine:
-    #     exec.run(f'amx_say "{cc.blank}{cc.team}{killer} {cc.yellow}->{cc.team} {victim} {cc.yellow}({method}) {cc.green}[HS!] {cc.yellow}- {cc.green}{timeString}{cc.yellow}"')
-
-    # # Not a headshot
-    # else:
-    #     exec.run(f'amx_say "{cc.blank}{cc.team}{killer} {cc.yellow}->{cc.team} {victim} {cc.yellow}({method}) {cc.yellow}- {cc.green}{timeString}{cc.yellow}"')
+    slowsay(format_death_string(death))
