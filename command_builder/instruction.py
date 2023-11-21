@@ -7,6 +7,6 @@ class Instruction:
     def clean(self, text) -> str:
         return text.replace('"', '\'\'')
 
-    """Print the instruction for debugging purposes """
+    """Print the instruction for debugging purposes"""
     def print(self):
         print(self.get_text())

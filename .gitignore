@@ -13,6 +13,7 @@ main.py
 !main_example.py
 
 cmds/*
+!cmds/add.py
 !cmds/slay.py
 !cmds/random.py
 !cmds/say.py

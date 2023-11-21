@@ -95,7 +95,6 @@ def amx_say_death(args):
 
     Command(amx_say(format_death_string(death))).run()
 
-
 def slowsay_death(args):
     death = find_death(args)
     

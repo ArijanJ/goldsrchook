@@ -79,9 +79,7 @@ def disable_plugin(plugin):
         if func.alias == plugin:
             func.enabled = False
             log('Disabled plugin')
-            Command().add(
-                echo('Disabled plugin ' + plugin)
-            ).run()
+            Command(echo('Disabled plugin ' + plugin)).run()
             return
 
     log(f'Could not find plugin {plugin}')

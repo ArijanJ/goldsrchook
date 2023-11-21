@@ -1,14 +1,16 @@
 from util.logs import log_wrapper as log
+from os.path import isfile
 
 prefixes = []
 
 def load():
-    with open("prefixes.txt", "r") as file:
-        log("Opened prefixes.txt")
-        lines = file.readlines()
-        for line in lines:
-            prefixes.append(line.strip())
-            log("Found prefix: " + line.strip())
+    if (isfile("prefixes.txt")):
+        with open("prefixes.txt", "r") as file:
+            log("Opened prefixes.txt")
+            lines = file.readlines()
+            for line in lines:
+                prefixes.append(line.strip())
+                log("Found prefix: " + line.strip())
 
 blacklist = [
     "*DEAD* ",

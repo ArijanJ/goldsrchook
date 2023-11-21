@@ -8,7 +8,7 @@ white = colorama_fore.WHITE
 green = colorama_fore.GREEN
 reset = colorama_style.RESET_ALL
 
-def separate():
+def separator():
     print(white + "="*50 + reset)
 
 def format_log_with_caller(string: str, caller: str) -> str:
@@ -25,6 +25,4 @@ def log_wrapper(message: str):
 
 def log_to_console_file(message: str):
     with open('consolelog.txt', 'a', encoding='utf-8') as file:
-        file.write(
-            format_log_simple(message)
-        )
+        file.write(format_log_simple(message))
